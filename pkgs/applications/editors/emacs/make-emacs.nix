@@ -13,7 +13,7 @@
   Xaw3d,
   acl,
   alsa-lib,
-  apple-sdk,
+  apple-sdk_15,
   autoreconfHook,
   cairo,
   dbus,
@@ -94,10 +94,10 @@
   withX ? !(stdenv.hostPlatform.isDarwin || noGui || withPgtk),
   withXinput2 ? withX && lib.versionAtLeast version "29",
   withXwidgets ?
-    !stdenv.hostPlatform.isDarwin
-    && !noGui
-    && (withGTK3 || withPgtk)
-    && (lib.versionOlder version "30"), # XXX: upstream bug 66068 precludes newer versions of webkit2gtk (https://lists.gnu.org/archive/html/bug-gnu-emacs/2024-09/msg00695.html)
+  !stdenv.hostPlatform.isDarwin
+  && !noGui
+  && (withGTK3 || withPgtk)
+  && (lib.versionOlder version "30"), # XXX: upstream bug 66068 precludes newer versions of webkit2gtk (https://lists.gnu.org/archive/html/bug-gnu-emacs/2024-09/msg00695.html)
   withSmallJaDic ? false,
   withCompressInstall ? true,
 
@@ -369,31 +369,31 @@ mkDerivation (finalAttrs: {
     ]
     ++ lib.optionals stdenv.hostPlatform.isDarwin [
       sigtool
-      apple-sdk
+      apple-sdk_15
     ]
     ++ lib.optionals withNS [
       librsvg
-      AppKit
-      GSS
-      ImageIO
+      # AppKit
+      # GSS
+      # ImageIO
     ]
     ++ lib.optionals (variant == "macport") [
-      Accelerate
-      AppKit
-      Carbon
-      Cocoa
-      IOKit
-      OSAKit
-      Quartz
-      QuartzCore
-      WebKit
-      # TODO are these optional?
-      GSS
-      ImageCaptureCore
-      ImageIO
+      # Accelerate
+      # AppKit
+      # Carbon
+      # Cocoa
+      # IOKit
+      # OSAKit
+      # Quartz
+      # QuartzCore
+      # WebKit
+      # # TODO are these optional?
+      # GSS
+      # ImageCaptureCore
+      # ImageIO
     ]
     ++ lib.optionals (variant == "macport" && stdenv.hostPlatform.isAarch64) [
-      UniformTypeIdentifiers
+      # UniformTypeIdentifiers
     ];
 
   # Emacs needs to find movemail at run time, see info (emacs) Movemail
